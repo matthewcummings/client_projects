@@ -119,17 +119,19 @@ log::error!("Critical error: {}", e);  // Writes to log files
 - Responsive design
 
 #### Issues
-- No TypeScript (maintenance risk)
-- Missing error boundaries
-- No state management library
+- Using JavaScript instead of TypeScript (increases testing need and potential for runtime issues)
+- Missing error boundaries (when components crash, entire app breaks instead of graceful degradation)
+- No state management library (complex state shared across components leads to bugs and harder maintenance)
 
 ---
 
-## 2. Critical Architecture Issues
+## 2. Architecture Issues
 
-### 2.1 The Research Integration Gap
+### 2.1 Research Integration
 
-**Current State: Completely Broken**
+**Current State: Broken/Incomplete**
+
+**Example:**
 ```python
 # Research module saves with project_id
 async def ingest_research(content: str, project_id: str):
@@ -143,21 +145,7 @@ async def get_context(session_id: str):
     return await vector_db.search(metadata={"session_id": session_id})
 ```
 
-**Impact**: Core value proposition (AI-powered research-informed interviews) doesn't work.
-
-**Fix Required**: 
-```python
-# Link sessions to projects
-class InterviewSession:
-    session_id: str
-    project_id: str  # Links to research
-    
-# Search both research and interview context
-async def get_context(session_id: str, project_id: str):
-    research = await vector_db.search(metadata={"project_id": project_id})
-    interview = await vector_db.search(metadata={"session_id": session_id})
-    return combine_contexts(research, interview)
-```
+**Impact**: Research integration must be minimally functional to support AI-powered interview suggestions and inference.
 
 ### 2.2 Deployment Architecture
 
