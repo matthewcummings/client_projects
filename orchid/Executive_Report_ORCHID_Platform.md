@@ -453,45 +453,6 @@ The platform has potential to capture the **podcast interview preparation market
 
 ---
 
-## Appendix B: Cloud Run Deployment Configuration
-
-```yaml
-# Cloud Run Configuration (cloudrun.yaml)
-apiVersion: serving.knative.dev/v1
-kind: Service
-metadata:
-  name: orchid-backend
-spec:
-  template:
-    metadata:
-      annotations:
-        run.googleapis.com/execution-environment: gen2
-        autoscaling.knative.dev/minScale: "1"
-        autoscaling.knative.dev/maxScale: "100"
-    spec:
-      containerConcurrency: 100
-      timeoutSeconds: 3600  # 60 minutes for long operations
-      containers:
-      - image: gcr.io/orchid-prod/backend:latest
-        resources:
-          limits:
-            cpu: "2"
-            memory: "4Gi"
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: database-url
-              key: latest
-        - name: OPENAI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: openai-key
-              key: latest
-```
-
----
-
 ## Appendix C: Simplified Architecture Diagram
 
 ```
@@ -501,26 +462,27 @@ spec:
 │   (Rust Audio)   │         │   (UI/UX Layer)  │
 │                  │         │                  │
 └────────┬─────────┘         └──────────────────┘
-         │
-         │ WebSocket
-         │ HTTPS
-         ▼
+         │                            │
+         │ WebSocket (audio)          │ Transcripts
+         ▼                            ▼
 ┌──────────────────┐         ┌──────────────────┐
 │                  │         │                  │
-│  Cloud Run API   ├─────────┤   PostgreSQL     │
-│   (Python/Fast)  │         │   (Structured)   │
+│    Deepgram      │         │  Cloud Run API   │
+│  (Transcription) │         │   (Python/Fast)  │
 │                  │         │                  │
-└────────┬─────────┘         └──────────────────┘
-         │
-         ├──────────┐
-         ▼          ▼
-┌──────────────┐  ┌──────────────┐
-│              │  │              │
-│   Deepgram   │  │    OpenAI    │
-│    (Audio)   │  │     (LLM)    │
-│              │  │              │
-└──────────────┘  └──────────────┘
+└──────────────────┘         └────────┬─────────┘
+                                      │
+                    ┌─────────────────┼─────────────────┐
+                    ▼                 ▼                 ▼
+         ┌──────────────────┐ ┌──────────────┐ ┌──────────────┐
+         │                  │ │              │ │              │
+         │   PostgreSQL     │ │    OpenAI    │ │  pgvector/   │
+         │  (Session Data)  │ │     (LLM)    │ │   Qdrant     │
+         │                  │ │              │ │  (Vectors)   │
+         └──────────────────┘ └──────────────┘ └──────────────┘
 ```
+
+Note: Tauri streams audio directly to Deepgram, then sends transcripts to backend. PostgreSQL replaces SQLite. Vector storage via pgvector extension or managed Qdrant cloud.
 
 ---
 
