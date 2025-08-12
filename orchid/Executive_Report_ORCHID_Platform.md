@@ -209,20 +209,21 @@ User Experience:
    - Key insights extraction
    - PDF export
 
-#### Nice to Have (Month 6)
+#### Month 6
 5. **Polish & Testing**
    - Improved UI/UX
    - Comprehensive error handling
    - Performance optimization
    - Beta user onboarding
    - Production logging system
+   - Documentation
 
 ### 3.2 Technical Simplifications
 
 **Focus Area: Python Backend (High ROI, Low Risk)**
 - Remove LangGraph orchestration → Direct function calls
 - Immutable state management → Simple mutable classes
-- 12 specialized agents → 3 core agents
+- 12 specialized agents → 4-6 agents
 - Complex retry logic → Simple error handling
 - **Potential: 30,000 lines → 8,000 lines (75% reduction)**
 
@@ -246,7 +247,7 @@ async def interview_turn(audio_chunk: bytes) -> QuestionSuggestion:
 
 ---
 
-## 4. Development Timeline & Budget
+## 4. Development Timeline
 
 ### 4.1 Team Structure
 
@@ -269,28 +270,28 @@ Team Capabilities:
 Timeline: 6 months to MVP
 ```
 
-### 4.2 Sprint Plan
+### 4.2 Sample Project Plan
 
 **Month 1-2: Foundation**
 - Week 1-2: Simplify backend to core functionality
-- Week 3-4: Remove LangGraph, reduce to 3-4 agents
+- Week 3-4: Simplify LangGraph usage, reduce to 4-6 agents
 - Week 5-6: Set up Cloud Run deployment
-- Week 7-8: Basic authentication & session management
+- Week 7-8: Multi-user support with authentication
 
 **Month 3: Core Features**  
-- Week 1-2: Fix research/interview integration
+- Week 1-2: Fix research/interview integration and deploy to cloud
 - Week 3: Implement streamlined question generation
 - Week 4: Basic report generation
 
 **Month 4: Advanced Features**
 - Week 1-2: Enhanced context management
-- Week 3: Multi-format report export
-- Week 4: Real-time collaboration features
+- Week 3: Desktop app packaging, code signing, and CI/CD setup
+- Week 4: Multi-format report export
 
 **Month 5: Production Readiness**
-- Week 1-2: Comprehensive error handling & monitoring
-- Week 3: Performance optimization
-- Week 4: Security audit & fixes
+- Week 1-2: Real-time collaboration features
+- Week 3: Comprehensive error handling & monitoring
+- Week 4: Performance optimization & security audit
 
 **Month 6: Launch Preparation**
 - Week 1: UI/UX polish
