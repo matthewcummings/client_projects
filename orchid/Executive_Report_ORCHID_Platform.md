@@ -338,32 +338,7 @@ ORCHID has **strong conceptual foundations** but requires **significant technica
 
 ---
 
-## Appendix A: Technical Debt Inventory
-
-### High Priority (Fix Immediately)
-1. Research/interview integration gap
-2. LangGraph over-engineering
-3. State management complexity
-4. Arc<Mutex<T>> overuse
-5. Debug logging in production
-
-### Medium Priority (Fix During MVP)
-6. Missing TypeScript in React
-7. No error boundaries
-8. Lack of monitoring
-9. No rate limiting
-10. Missing API versioning
-
-### Low Priority (Post-Launch)
-11. Test coverage (<20% currently)
-12. Documentation gaps
-13. Performance optimizations
-14. Accessibility features
-15. Internationalization
-
----
-
-## Appendix C: Simplified Architecture Diagram
+## Appendix: Simplified Architecture Diagram
 
 ```
 ┌──────────────────┐         ┌──────────────────┐
