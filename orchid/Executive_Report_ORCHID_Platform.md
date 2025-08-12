@@ -29,7 +29,7 @@ ORCHID is an ambitious AI-powered interview assistant platform with solid concep
 - Good async/await patterns
 - Comprehensive agent implementations
 
-#### Critical Issues
+#### Example Issues
 
 **Over-Engineered State Management**
 ```python
@@ -41,7 +41,7 @@ class InterviewState(BaseModel):
     questions_asked: List[str] = Field(default_factory=list)
     # 20+ more fields...
 
-# Should be: 50 lines with mutable state
+# Could be: 50 lines with mutable state
 class InterviewState:
     def __init__(self):
         self.session_id = str(uuid4())
@@ -58,7 +58,7 @@ sg.add_node("FinalIngest", final_ingest)
 sg.add_node("CreateQuestion", create_question)
 # ... 12 more nodes
 
-# Should be: 4-5 functions with direct calls
+# Could be: 4-5 functions with direct calls
 async def process_interview_turn(utterance: str):
     await ingest_to_vector_db(utterance)
     question = await generate_question(utterance)
@@ -66,29 +66,28 @@ async def process_interview_turn(utterance: str):
 ```
 
 **Size Analysis**
-- 30,000 lines total
-- Could be reduced to ~5,000 lines
+- 30,000 lines total, could be reduced to ~5,000 lines
 - 85% unnecessary complexity
 
 ### 1.2 Rust/Tauri Frontend (Score: 6/10)
 
 #### Strengths
-- Clean separation of concerns
+- Clean separation of concerns: Rust for low-level audio handling, React for presentation/UI
 - Proper audio handling
-- Good Tauri command structure
+- Well-structured Tauri commands: async/await patterns, proper state passing, and clean separation between system operations and UI communication
 
-#### Critical Issues
+#### Example Issues
 
-**Arc<Mutex<T>> Overuse**
+**Arc<Mutex<T>> Overuse (Non-idiomatic Rust)**
 ```rust
-// Current: Thread-safety overkill
+// Current: Thread-safety overkill, bypasses Rust's compile-time ownership model
 struct AppState {
     streamer: Arc<Mutex<Option<DeepgramAudioStreamer>>>,
     is_running: Arc<AtomicBool>,
     audio_devices: Arc<Mutex<Vec<AudioDevice>>>,
 }
 
-// Should be: Simpler state management
+// Could be: Leverage Rust's ownership system for compile-time safety
 struct AppState {
     streamer: Option<DeepgramAudioStreamer>,
     is_running: bool,
@@ -99,7 +98,7 @@ struct AppState {
 **Debug Logging in Production**
 ```rust
 // Found throughout codebase
-println!("CRITICAL ERROR: {}", e);  // Goes nowhere in production
+println!("CRITICAL ERROR: {}", e);
 
 // Problem: In production, println! outputs vanish - no console window exists
 // Impact: Critical errors are invisible, making debugging impossible
@@ -110,7 +109,6 @@ println!("CRITICAL ERROR: {}", e);  // Goes nowhere in production
 
 // Should use proper logging:
 log::error!("Critical error: {}", e);  // Writes to log files
-// Or better: tracing::error!("Critical error: {}", e);
 ```
 
 ### 1.3 React Frontend (Score: 7/10)
