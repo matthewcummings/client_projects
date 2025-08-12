@@ -5,14 +5,14 @@
 ## Executive Summary
 
 ### Current State
-ORCHID is an ambitious AI-powered interview assistant platform with solid conceptual foundations but significant technical and architectural challenges. The codebase consists of **30,000+ lines of Python** and **2,500 lines of Rust/React**, representing substantial development effort but with critical issues that prevent production deployment.
+ORCHID is an ambitious AI-powered interview assistant platform with solid conceptual foundations but significant technical and architectural challenges. The codebase consists of **30,000+ lines of Python** and **2,500 lines of Rust/React**, representing substantial development effort but with key technical issues that need resolution before launching with real users.
 
 ### Key Findings
-1. **Core Technology Stack is Sound**: Tauri + React + FastAPI is a viable architecture
-2. **Critical Integration Gap**: Research module completely disconnected from interview workflow  
-3. **Over-Engineering**: 16-node LangGraph orchestration for simple operations
-4. **Deployment Blocker**: Local Docker requirement makes distribution impossible
-5. **Code Quality Issues**: Heavy use of anti-patterns, especially Arc<Mutex<T>> in Rust
+1. **Core Technology Stack is Sound**: Tauri desktop app provides the unobtrusive interviewer experience, while React + FastAPI handle UI and backend processing appropriately
+2. **Key Integration Gap**: Research module appears incomplete and is completely disconnected from interview workflow  
+3. **Complex Agent Orchestration**: 16-node LangGraph workflow could be simplified for better maintainability
+4. **Backend Deployment Challenges**: Local Docker acceptable for developer workflows, but not tenable for non-technical end users and costly in terms of support/maintenance
+5. **Code Quality Issues**: Non-idiomatic patterns throughout (especially Rust Arc<Mutex> usage), verbose Python backend, minimal test coverage (~5% vs target 40%), and unmaintained CI/CD pipeline
 
 ### Primary Recommendation
 **Pivot to cloud-first architecture with focused MVP** targeting core interview assistance features. Estimated effort: **2 developers × 6 months** for production-ready MVP.
