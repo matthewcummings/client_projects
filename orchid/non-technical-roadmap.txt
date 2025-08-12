@@ -1,0 +1,451 @@
+# Orchid Non-Technical Feature Map
+
+## Project/Session Organization Models
+
+### Option 1: Project per Show
+
+- **Structure**: Single project contains all seasons, episodes, and interviews
+- **Context Handling**:
+    - Global context contains show-wide reference materials
+    - Higher-level themes persist across all episodes
+    - Very large context window that grows over time
+
+### Option 2: Project per Season
+
+- **Structure**: New project for each season, contains multiple episodes
+- **Context Handling**:
+    - Season-specific themes and references
+    - Previous seasons could be referenced but not automatically included
+    - Moderate-sized context window that resets seasonally
+
+### Option 3: Project per Episode
+
+- **Structure**: Each episode is its own project, may contain multiple interviews
+- **Context Handling**:
+    - Episode-specific documents and references
+    - Smaller, more focused context
+    - Fresh context for each episode
+
+### Option 4: Project per Interview
+
+- **Structure**: Finest-grained organization, one project per conversation
+- **Context Handling**:
+    - Very specific, interview-focused context
+    - Minimal context size
+    - Highly targeted, but lacks broader continuity
+
+---
+
+## 🔹 Pre-Production Hub
+
+### Research & Source Management
+
+- Upload from anywhere: URL, document, email, RSS, Twitter list, YouTube
+    - copy a tiktok link
+    - Add a twitter
+- Auto metadata: title, author, language, length, saved date
+- View, read, comment, highlight documents.
+- Toggle sources on/off
+- Integrate with Notion, google docs, drobox, box, sharepoint, upload epubs
+- Deep Research Tool:
+    - Scrapes, summarizes, and annotates sources
+    - Adds summary and source annotations to context DB
+    - When researching someone, have it not just look at their social feed, but what people are saying about this person, who their friends might be for a statement (do we want it to send emails to friends asking for statements?)
+    - Find other content creators who have already covered the story and get in contact with them for other threads or contact info for people to include in interviews
+    - who are the peripheral secondary characters affected or that might have info. The courthouse clerk? etc
+    - Do deep research, write up compelling questions, syntehsis the interview with that individual, rate the interview, figure out what further context and research would have been helpful, then do that research.
+    - Build detailed timeline of key events, relationships, and public statements.
+    - Cross-references all sources to identify contradictory statements, narrative gaps, and unexplored angles.
+    - Flags potential legal issues, traumatic events, ongoing controversies → Provides tactical approaches for navigating each sensitive area.
+    - https://anvaka.github.io/map-of-reddit/?x=14077.5&y=17622.5&z=33986.09142430725&v=3 - map of your logic?
+    - @ mentions what people are saying about this person
+    
+- Output generators:
+    - Briefing document
+    - Timeline of events
+    - Connect the Dots
+    - Generates a Contact list
+
+**ADVANCED FEATURES:**
+
+### AI Rehearsal & Simulation
+
+- Interactive rehearsal with simulated AI subjects
+- Role-play interviews with models trained on public figures
+- Live feedback on tone, delivery, question strength
+- Analysis of similar interview formats (e.g. influencer shows)
+- Market trends to suggest interview strategy
+
+### Internationalization & Sensitivity
+
+- Cultural sensitivity filters per region
+- Language + localization tooling
+- Guidance for controversial/tragedy topics
+
+background check via lexis nexis or Spokeo API (paid add on or quota)
+
+Based on research, docs uploaded, links added, infer what kind of interview is about to incur.  Ask the user questions (dynamic prompting) to better fine tune the model used before writing questions and providing feedback: Field-aware prompts/ Domain detection 
+
+---
+
+## 🔹 Production Hub
+
+- find something in the room to comment on
+
+**Recording Settings: possible agentic mixer? (could be a future paid API as well)**
+
+```markdown
+RecordingSettings
+├─ Master Toggles
+│  ├─ Record Video          on / off
+│  └─ Record Audio          on / off
+│
+├─ Video Settings              (shown only when “Record Video” is on)
+│  ├─ Video Source             Full screen | Window | Region
+│  ├─ Multi-monitor Capture    on / off
+│  ├─ Frame Rate               30 fps | 60 fps
+│  ├─ Resolution               1080p | 720p | 480p
+│  ├─ Capture Cursor           on / off
+│  ├─ Highlight Clicks         on / off
+│  ├─ Video Quality            High | Medium | Low
+│  └─ Camera Source            None | Webcam Overlay | iDevice (external)
+│
+├─ Audio Settings              (shown only when “Record Audio” is on)
+│  ├─ System Audio             on / off
+│  ├─ Microphone               on / off
+│  │  └─ Selected Mic          Default | External USB | Headset
+│  ├─ Channel Configuration    Mono | Stereo
+│  ├─ Noise Cancellation       on / off
+│  ├─ Echo Cancellation        on / off
+│  ├─ Auto-gain Control        on / off
+│  └─ Sample Rate (kHz)        48 | 44.1 | 16
+│
+├─ Transcription Settings
+│  ├─ Enable Transcription     on / off    (works even if audio isn’t recorded)
+│  ├─ Audio Type               Stereo (split) | Mixed
+│  ├─ Language                 English | Spanish | French | German
+│  ├─ Real-time Transcription  on / off
+│  └─ On-screen Overlay        on / off    (shown only when real-time is on)
+│
+└─ Output Settings             (disabled when both video & audio are off)
+   ├─ Output Format            MP4 | MOV | MKV
+   ├─ Separate A/V Files       on / off
+   │  ├─ Audio Output          Stereo Mixed | Mono
+   │  └─ Audio File Format     WAV | AAC | MP3   (only if audio is recorded)
+   └─ File Naming Pattern      Timestamp | Custom
+
+```
+
+### Transcript Interaction
+
+- Diarized audio
+    - Rename and recolor source to reflect actual name of participants to track who says what
+- Select text and then Auto-highlight via keystroke (H), note (N), tag (T)
+- All highlights include:
+    - Timecode
+    - Click-to-navigate
+    - Add notes/tags
+    - Ghost-reader-like chat interface
+    - Auto prompts: Summarize / Translate / Explain / Ask
+    - AI takes a crack at why you highlighted. Flag for follow up? Viral Moment?
+- Panels toggle on/off: transcript, notes, sources - this is in reference to the overall chat feature
+- Fact checking via tool call - search internet to verify, pull 3 sources.
+    - Unverified claim via rag gets tool call ONLY if LLM deems the fact worth searching
+    - Use different emojis ⚠️ ‼️ to signify severity of claim
+- in line jargon / keyword definitions ______ pop up on hover - (dial/threshold for sensitivity / domain)
+- Copy text, share image quotes (e.g. Instagram/twitter-ready)
+
+### Co-Host Tools
+
+- Live fact-check against transcript or RAG
+- Chat with:
+    - Individual highlight
+    - Entire notes/highlights
+    - Entire transcript
+    - Context sources (toggle-enabled)
+- Have the ability to see the same orchid dashboard (multi-user session) and sync between teams?
+
+### Emotional Intelligence
+
+- Use MediaPipe to detect hand motion, eye movement, body language (give AI an understanding of the nuances)
+- Eventually have multimodal llm and pipe directly to also monitor pitch, tone to really understand both your interviewers and even your
+
+### Evaluation & Feedback Loops
+
+- Benchmark question quality
+    - Questions are assigned relevance scores
+    - Questions from different context tiers (transcript vs knowledge base) have their scores adjusted by weight
+    - Question Diversity
+    - Questions below the relevance threshold are filtered out (suggestion govenor)
+    - Remaining questions are sorted by adjusted relevance score
+    - The top N questions (where N is `max_total_questions`) are returned
+    - When a user asks the question (local llm call for similar phrasing) consider this a 👍🏼. If a user X's a question out, consider it 👎🏼, if a user rewrites a question take note
+    - When a user asks a question, but in their own words, take note to the the way its phrased to learn their style. Persist that style throughout the interview and beyond?
+        - Session based persistence vs beyond session boundry.
+    - Add metrics for question generation time, quality scores, and API latency to identify bottlenecks and opportunities for optimization.
+    - do we show users relevance score? do we clasify the question as general vs challenge vs
+    - Clustergovenor: groups candidates, flags over-represented themes
+    - questions reogranize based on flow
+- Benchmark deep research quality
+- Track what other users are researching (anonymized)
+- Track emerging trends in audience engagement and content types
+
+In ear producer - take text questions and coaching and turn it into audio.  Beep: slow down. Ding: ask this. 
+
+Multi Language support, and live translations
+
+questions: 
+
+do we want a slow down speed up coaching tool?
+
+do we want a measure of how much the content will make sense to the average listener or the user’s fan base? 
+
+### Remote Interview Companion (Hi-Fi Side Channel)
+
+- **Parallel Recording Portal**
+    - Lightweight browser-based recording tool for interviewee
+    - Local high-fidelity audio/video capture independent of Zoom/Meet
+    - Automatic cloud upload post-session
+    - Built-in failover: fallback to live call audio if local capture fails
+- **Interviewer-Controlled Trigger**
+    - Interviewer can remotely start/stop local capture
+    - Real-time sync signal for aligning recordings across devices
+- **Consent & Permissions Flow**
+    - One-click camera/mic permission request
+    - Configurable onboarding prompt to reassure guests + set expectations
+- **Smart Sync & Upload**
+    - Timecode alignment with primary session (e.g. WS timestamps)
+    - Background upload with progress tracking
+    - Auto-transcode to match project settings (fps, audio sample rate)
+- **Post-Capture QA**
+    - Auto-check for audio dropouts or poor lighting
+    - Optional re-record prompt for guest if quality fails baseline
+- **Recording Quality Profile**
+    - Adaptive resolution / bitrate settings based on guest’s connection
+    - Local fallback buffer if connection temporarily drops
+
+---
+
+## 🔹 Post-Production Hub
+
+### Highlight + Notes Aggregation
+
+- Two highlight types:
+    - Transcript highlights
+    - Source doc highlights
+- View highlights across multiple sessions
+- Prioritize highlights for:
+    - Voiceover script
+    - Narrative arcs
+    - IP packaging
+- Notebook = aggregation of highlights, pinned LLM results, notes
+
+Export transcript to txt, vtt, srt, pdf, etc 
+
+Output to descript, premier, avid (script sync)
+
+Meeting notes / summary
+
+Cross episode insights 
+
+### Editorial Assembly Tools
+
+- “Record VO Session” button → launches dedicated module
+- Filter highlights for what to include in VO
+- Discard irrelevant content
+- Chat with RAG highlights for deeper VO development
+
+Cut like descript
+
+Auto A/V Polish
+
+### IP & Rights Management
+
+- Copyright tools for unique interview insights
+- Auto-package into IP (e.g., docuseries, podcast pitch, book outline)
+
+---
+
+## 🔹 Functional Feature Clusters
+
+### LLM Interaction
+
+- Chat with:
+    - Individual note
+    - All notes/highlights
+    - Any source or transcript
+- Output: pinned notebook entries
+- AI benchmarking + performance evaluation (question quality, depth)
+
+### Note-Taking
+
+- Highlight, tag, annotate any text
+- Keyboard shortcut UX (H, N, T)
+- Auto-sorting by type, session, timecode
+
+### Sharing / Export
+
+- Share quote as image with Orchid watermark
+- Export transcript segments
+- Export tagged highlights
+
+### Localization + Ethics
+
+- Region-based tone modulation
+- Ethical prompts for controversial topic guidance
+
+### RAG Architecture
+
+- Current: Qdrant
+- Options: Benchmark other vector DBs
+- GPT-based annotations on summaries
+
+### Timecode
+
+- **All timecodes must be perfect** (non-negotiable baseline)
+
+### LLM Backbone
+
+- Multimodal AI fine-tuned on interview best practices
+- Abstraction layer: switch between OpenAI, Claude, Gemini, Perplexity
+- API for 3rd-party plugin of Orchid-specialist LLM
+
+---
+
+## 🔍 Strategic Product Questions
+
+### Mental Model & UX Simplicity
+
+1. Are we a transcript tool, a storyboarding tool, or a research assistant?
+2. Are notes/highlights unified across transcript & source docs or siloed?
+3. Is the user flow meant to be linear (pre → prod → post) or fluid?
+
+### AI Interaction Scope
+
+1. Do users want to "chat with everything" or only per-object?
+2. Do pinned chats (notebook) become reusable snippets?
+3. Are AI chats persistent or ephemeral?
+
+### Collaboration + Scale
+
+1. Multi-user? Can producers share notebooks, tags, highlights?
+2. Scale boundary: how many interviews can be loaded at once?
+3. How do we make the RAG interaction scalable across long sessions?
+
+### IP / Legal / Monetization
+
+1. What happens to user-owned insights created with Orchid? - make it clear its owned by the user
+2. Can we offer IP/legal guidance or registration tooling?
+3. Do we need licensing for image-based quote sharing?
+
+---
+
+Would you like this document converted into a prioritization matrix or feature rollout timeline next?
+
+**Current Agents:**
+
+Contradiction detctor
+
+document loader
+
+emotional monitor (hooked up to media pipes)
+
+outline tracker
+
+question generator
+
+style learner 
+
+persona adapter ( sits between style-learner & question generator)
+
+suggestion governor
+
+question matcher (was this question asked - semantic similarity)
+
+risk guard
+
+summarizer
+
+throttle controller
+
+tone rephraser
+
+topic shift gate
+
+**Proposed agents:**
+
+Flow analyzer 
+
+Boundary explorer
+
+discourse layer analyzer
+
+audience proxy
+
+psychological pattern recognition: trauma, cognative dissonance, reputational defense, reading between the lines, blindspots
+
+narrative structure agent
+
+legal context
+
+evidence verification
+
+emotion impact tracker
+
+social/cultural context
+
+core knowledge
+
+hidden assumptions detector
+
+[**Data Intelligence and Metrics: Turning Interviews into Actionable Insights**](https://www.notion.so/Data-Intelligence-and-Metrics-Turning-Interviews-into-Actionable-Insights-2086ab16f7af8050a03dce1dafbbc6fc?pvs=21) 
+
+Spin up dynamic agents on the fly?
+
+code a base agent that provides expected patterns (or agent template library)- make sure we can benchmark these agents
+
+would need a background agent that sees the way an interview is going and prepares potentially needed agents in standby mode before full deployment
+
+Learn not just how the interviewer asks questions but what types of questions the interviewee responds to (this should not be persistent beyond session).  This should also be part of deep research.  Anaylyze other apperance to understand the types of questions a person responds well to or baulks at
+
+after an interview, analyze what background info would have been helpful to make the interview better. make note of this for deep research.  what type of coaching does the user need more of (make persistent)
+
+potential ways to figure out what agents we need (open ended question) - annalyze a bunch of transcripts, what would have made an interview better? what backgorund info would have been helpful. what agents would have provided better guidence.
+
+**examples of AI connecting the dots:**
+
+**Scenario:** Interviewing a researcher whose discovery contradicts their own previous acclaimed work.
+
+**AI Pattern Detection:**
+
+- Publication history shows gradual shift in thinking
+- Academic community reaction shows unusual division along generational lines
+- Researcher has avoided discussing personal journey in technical papers
+
+**Standard Question:** "Doesn't this new finding invalidate your previous work?"
+
+**AI-Enhanced Question:** "Scientific progress often involves revising our own understanding. Could you share the intellectual journey that led you from your earlier conclusions to this new perspective?"
+
+**Scenario:** Interviewing a politician who changed position on immigration after 20 years.
+
+**AI Pattern Detection:**
+
+- Constituency demographics have shifted significantly
+- Politician's statements show evolution rather than sudden change
+- Personal connection discovered (previously undisclosed family immigration story)
+
+**Standard Question:** "Why did you flip-flop on immigration?"
+
+**AI-Enhanced Question:** "Your perspective on immigration has evolved over two decades in public service. What experiences or insights most significantly shaped this evolution in your thinking?"
+
+**Scenario:** Interviewing a basketball player who returned after a career-threatening injury, but is underperforming.
+
+**AI Pattern Detection:**
+
+- Performance statistics show normal recovery trajectory that contradicts media narrative
+- Medical research indicates psychological recovery often lags physical recovery
+- Social media analysis shows player responding defensively to criticism
+
+**Standard Question:** "Why haven't you returned to your pre-injury form?"
+
+**AI-Enhanced Question:** "Athletes often describe the mental journey of returning from injury as more complex than the physical one. How has your relationship with the game evolved through this recovery process?"

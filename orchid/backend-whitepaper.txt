@@ -1,0 +1,174 @@
+## Executive Summary
+
+Imagine having a world-class producer providing guidance during every interview you conduct. ORCHID (Optimized Realtime Contextual High Impact Dialogues) makes this possible by combining AI-powered real-time coaching with professional recording tools. As you interview your guest, ORCHID analyzes the conversation, suggests follow-up questions, flags missed opportunities, and helps you maintain perfect pacing - just like a seasoned producer would. It's the first interview tool that actively guides you during the conversation, not just before or after.
+
+Whether you're a podcaster trying to dig deeper with guests, a journalist conducting sensitive interviews, or a content creator looking to level up your conversations, ORCHID acts as your always-on producer, helping you conduct more engaging, insightful interviews in real-time.
+
+## Why It Matters
+
+The difference between a good interview and a great one often comes down to moments you can't plan for. A guest mentions something fascinating in passing, but you miss the opportunity to dig deeper. You stick too rigidly to your prepared questions instead of following an unexpected but promising tangent. Or you realize hours later that you forgot to ask the one question that would have tied everything together.
+
+These missed opportunities cost creators in multiple ways:
+
+### Lost Depth and Authenticity
+
+- Superficial conversations that never reach the insights your audience craves
+- Missed chances to uncover unique stories or perspectives
+- Generic interviews that sound like every other podcast or YouTube channel
+
+### Production Inefficiency
+
+- Hours spent in pre-production research that doesn't translate to better conversations
+- Post-production headaches trying to salvage mediocre content
+- The need for multiple interviews to get enough quality material
+
+ORCHID transforms these common struggles into opportunities by:
+
+- Catching those crucial moments you might miss in real-time
+- Maintaining the natural flow while suggesting deeper questions
+- Turning good conversations into great content through active guidance
+- Helping you develop better interviewing instincts over time
+
+Whether you're a seasoned professional or just starting out, ORCHID ensures you never walk away from an interview thinking "I wish I had asked about..."
+
+## What Orchid Does:
+
+- Listens and understands your conversation as it happens
+- Suggests follow-up questions based on what your guest just said
+- Gently guides you toward deeper insights when opportunities arise
+- Helps maintain perfect pacing and topic coverage
+- Provides real-time transcription with speaker identification
+- Flags important moments for later use
+
+## Technical Capabilities
+
+For those interested in the technical details, here's how ORCHID delivers these features:
+
+### 1. Seamless and Customizable Audio-Visual Recording
+
+- Captures high-quality audio and video from multiple inputs simultaneously (microphones, system audio, screen capture, and cameras), with specialized support for capturing both local and remote audio/video streams, making it perfect for capturing zoom/teams based interviews and interactive presentations.
+- ~~Automatically balances sound levels and reduces background noise, resulting in clear, polished audio.~~
+- Advanced audio configurations include noise cancellation, echo suppression, adjustable sample rates, and flexible device/microphone selection.
+- Mixes audio or saves audio tracks separately, simplifying post-production editing.
+- Flexible screen recording options include full-screen, window-specific, or custom region capture, with adjustable resolution, frame rates, multi-monitor support, and external camera overlays for enhanced visual integration.
+
+### 2. Real-Time Transcription
+
+- Converts audio into text instantly with punctuation, speaker identification, and timecode.
+- Export transcripts in various formats for integration into various platforms.
+
+### 3. AI-Driven Interview Assistance
+
+Orchid's AI acts like your personal producer, helping you stay on track, dive deeper, and uncover insights during interviews by analyzing the conversation's flow, context, and structure.
+
+**Context Awareness for Smooth Conversations**
+
+The AI monitors conversations in real time, helping you maintain a natural flow:
+
+- Immediate Insights: It spots technical terms, ambiguous statements, or claims needing clarification and flags them for further exploration.
+- Tracking Key Themes: The AI remembers what's been said earlier, allowing you to follow up seamlessly and build on key ideas.
+- Integrating Pre-Interview Research: Orchid surfaces important facts or background information from your uploaded research documents, enriching discussions with relevant context.
+
+**Real-Time Feedback & Coaching**
+
+The AI guides you in the moment, so you can fine-tune your interview approach:
+
+- Coaching on Pacing: Whether you need to slow down, speed up, or pivot to a different topic, Orchid's AI ensures you maintain an engaging and productive pace.
+- UI Feedback Scores: The interface highlights what's working and what's not, helping you adapt and refine your questions or style in real time. Gain insight into how straightforward your content is, ensuring your messaging remains direct and easily understood.
+
+**AI-Generated and Prioritized Questions**
+
+Orchid dynamically suggests follow-up questions as the conversation unfolds and intelligently prioritizes them based on relevance and timing:
+
+- Real-Time Generation: Questions are created based on the discussion and preloaded research, helping you dig deeper and uncover hidden opportunities.
+- Smart Reordering: The AI automatically ranks and reorders questions based on the interview's flow while giving you the flexibility to manually adjust or reorder them via drag-and-drop.
+- Reframe questions: If your interviewee doesn't understand the question, have AI reframe or rewrite it.
+
+**Real-Time Learning and Adaptation**
+
+Orchid actively learns and adapts to your style during the interview, continuously improving its support:
+
+- Pattern Recognition: It quickly identifies and complements your interviewing techniques.
+- Response Analysis: The AI tracks which questions drive meaningful responses and fine-tunes its future suggestions accordingly.
+- Contextual Refinement: As the conversation deepens, the AI offers increasingly relevant prompts and follow-ups to keep the discussion engaging and productive.
+
+**Transcription In Line Definitions and Fact checking**
+
+- Inline fact checking: if a statement made is deemed factual during the interview and is unverifiable or false:
+    - ⚠️unverifiable claim - no backup in the pre-pro context
+    - ‼️false or refutable claim - claim directly refutes whats said in the pre-pro context
+    - Flags only claims that are harmful. Can be toggled on and off. Sensitivity temperature can be adjusted by user
+
+With Orchid's intelligent support, you can focus on what you do best—asking the right questions, connecting with your guests, and creating compelling conversations.
+
+### 4. Highlighting and Note-Taking
+
+Orchid's highlighting and note-taking features empower users to capture key moments, insights, and actionable details directly within the transcript. These highlights and notes are seamlessly integrated into the broader interview workflow, providing multiple benefits:
+
+- Mark Key Moments: Easily highlight important segments of the conversation and attach contextual notes to capture immediate observations or follow-up actions.
+- Timecode Tracking: Each highlight is automatically linked to its corresponding timecode, allowing users to quickly locate specific sections of the interview.
+- Easy-to-Manage Highlight Panel: A dedicated panel displays all highlights and notes, offering a clear and structured view of key moments for post-interview review and content extraction.
+- Searchable and Filterable Highlights: Users can search through highlights by keyword or filter them by themes, speakers, or custom tags, making it easy to organize and retrieve critical information.
+- AI-Powered Summarization: Leverage Orchid's AI to generate summaries of highlighted sections, simplifying the process of identifying key takeaways and insights.
+- Talk to your highlights: Ask questions of your highlights to better understand whats being said.
+
+**AI-Driven Highlight Intent Detection**
+
+Whenever you create a highlight, Orchid's AI tries to infer the reason behind it. Using dynamic prompting techniques, it classifies your highlight as:
+
+- Follow-Up Needed: The highlight signals a question or topic you want to explore more deeply. Orchid will auto-generate a follow-up question to help you dive deeper next.
+- Great Take / Viral Moment: The highlight indicates a particularly strong soundbite, quote, or snippet of conversation. Orchid will not prompt a question here but will flag it as a potential "best moment" for post-production or social media.
+- Conversational Flow Maintenance: If the AI deems a highlight is for follow-up, it adds the newly generated question into your question queue—but keeps it unobtrusive, so you remain focused on the interview.
+
+### Core Capabilities
+
+### 1. Global Context Management
+
+- Creates a rich contextual environment through semantic search technologies
+- Enables dynamic prompt generation for real-time assistance
+- Utilizes advanced information retrieval for accurate fact-checking
+- Processes multiple document formats (TXT, PDF, etc.) for comprehensive research
+- Maintains contextual awareness throughout the interview lifecycle
+- Cross-Referencing and Fact-Checking:
+    - Automatically flags contradictions or narrative shifts across multiple sources
+    - Integrates uploaded materials for dynamic fact-checking during the interview
+
+**How We Leverage Advanced Search and Contextual Understanding**
+
+Orchid integrates advanced search and contextual understanding technologies to enable:
+
+- Fast, efficient local searches without relying on external databases
+- Semantic indexing for documents, transcripts, and notes, ensuring accurate context during interviews
+- Dynamic updates to search results based on evolving user inputs and live session feedback
+
+Our system uses advanced prompt construction techniques to:
+
+- Dynamically build prompts by aligning uploaded materials and user interactions
+- Generate semantic representations that enhance searches and context linking
+- Orchestrate information retrieval to access contextually relevant information with high accuracy, minimizing errors and pointing directly to source material
+
+### Key Features
+
+### 1. Real-Time Learning
+
+- Adapts to your interviewing style.  The AI listens for which questions it generated get used, and how they are asked in your very own style and tone.
+- Refines suggestions based on usage patterns.  The AI gets to know you and improves with every cycle
+
+### 2. Real-Time Complexity Analysis
+
+- Complexity Metrics: Orchid continuously evaluates the level and complexity of both your questions and the guest's answers. If the conversation gets too dense, the AI suggests clarifying or simplifying questions to keep the content accessible to broader audiences.
+
+### 3. Conversation Coverage & Topic Drift Alerts
+
+- Key Point Tracking: Before the interview, you might set certain primary topics or objectives. Orchid actively monitors the conversation, comparing real-time transcript content to these objectives. If you begin to drift off-course (or forget a key question), Orchid prompts you to steer back.
+- Time Management & Transition Cues: If you've allocated only 10 minutes for Topic A, Orchid sends subtle alerts when you're nearing that time—helping you move on naturally, without abruptly cutting off your guest.
+
+### Advances in AI and ORCHID's Future Potential
+
+Artificial Intelligence has made remarkable strides, particularly in semantic understanding and contextual analysis. These advancements open doors to a new era of real-time, multimodal interaction, where AI can comprehend not just text but also tone, facial expressions, and other subtle nuances of human communication. ORCHID is designed with these future capabilities in mind.
+
+Currently, ORCHID's data flow follows a structured pipeline: recording > transcription > AI processing. The system efficiently streams raw audio buffers to transcription services for real-time processing. However, ORCHID is architected to evolve alongside AI advancements, enabling the future possibility of directly streaming both audio and video to AI for live, multimodal analysis.
+
+This robust infrastructure means that, just as raw audio buffers are currently piped to transcription services, future iterations of ORCHID will be able to directly stream video and audio to AI systems. This will facilitate a deeper level of multimodal semantic understanding by AI—capturing tone, sentiment, facial expressions, body language, and more. These enhancements will ensure ORCHID is not just a tool for transcription but a comprehensive, real-time assistant capable of analyzing all aspects of communication.
+
+We believe that as AI evolves to handle these multimodal streams, ORCHID will be positioned to lead the charge, transforming interviews into deeply insightful, interactive experiences that offer nuanced feedback and understanding in real-time.
