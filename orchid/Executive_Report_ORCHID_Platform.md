@@ -1,8 +1,4 @@
-# Executive Report: ORCHID Platform Assessment & Productionization Strategy
-
-**Date:** December 2024  
-**Prepared by:** Technical Assessment Team  
-**Client:** ORCHID Development Team  
+# ORCHID Platform Assessment & Productionization Strategy  
 
 ---
 
@@ -476,13 +472,13 @@ The platform has potential to capture the **podcast interview preparation market
                     ▼                 ▼                 ▼
          ┌──────────────────┐ ┌──────────────┐ ┌──────────────┐
          │                  │ │              │ │              │
-         │   PostgreSQL     │ │    OpenAI    │ │  pgvector/   │
-         │  (Session Data)  │ │     (LLM)    │ │   Qdrant     │
-         │                  │ │              │ │  (Vectors)   │
+         │   PostgreSQL     │ │    OpenAI    │ │    Qdrant    │
+         │  (Session Data)  │ │  (LLM & Emb) │ │   (Vectors)  │
+         │                  │ │              │ │              │
          └──────────────────┘ └──────────────┘ └──────────────┘
 ```
 
-Note: Tauri streams audio directly to Deepgram, then sends transcripts to backend. PostgreSQL replaces SQLite. Vector storage via pgvector extension or managed Qdrant cloud.
+Note: Tauri streams audio directly to Deepgram, then sends transcripts to backend. PostgreSQL replaces SQLite for session data. Qdrant Cloud for vector storage.
 
 ---
 
