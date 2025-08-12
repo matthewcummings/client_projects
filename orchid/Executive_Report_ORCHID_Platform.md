@@ -149,21 +149,25 @@ async def get_context(session_id: str):
 
 ### 2.2 Deployment Architecture
 
-**Current: Impossible for Target Users**
+**Current: Local Docker Setup**
+
+The current architecture requires users to run the backend locally via Docker, which creates significant barriers for the target user base (podcasters, content creators).
+
 ```yaml
 Local Requirements:
-- Docker Desktop (500MB download)
-- 8GB RAM minimum
-- Technical expertise
-- Manual configuration
+- Docker Desktop (500MB download, requires admin rights)
+- 8GB RAM minimum (many creator laptops have 4-8GB)
+- Command line familiarity
+- Environment configuration knowledge
 
-User Experience:
-1. Install Docker Desktop ❌ (most will fail here)
-2. Clone repository ❌
-3. Run docker-compose ❌  
-4. Configure environment ❌
-5. Debug inevitable issues ❌
+User Experience Challenges:
+1. Install Docker Desktop (unfamiliar to most creators)
+2. Run docker-compose commands (command line interface)
+3. Configure API keys and environment variables
+4. Troubleshoot Docker/networking issues when things go wrong
 ```
+
+**Impact**: This setup works well for developers but creates a significant barrier to user adoption. Most content creators expect app-store-style installation (download → install → run).
 
 **Required: Cloud-First Architecture**
 ```yaml
@@ -186,31 +190,31 @@ User Experience:
 ### 3.1 Core MVP Features (Launch in 6 Months)
 
 #### Month 1-3
-1. **Basic Interview Flow**
+- **Basic Interview Flow**
    - Audio recording via Tauri
    - Real-time transcription (Deepgram)
    - Simple question suggestions
    - Session management
 
-2. **Cloud Backend**
+- **Cloud Backend**
    - Google Cloud Run deployment
    - PostgreSQL for structured data
    - Redis for queues
    - Basic authentication
 
 #### Month 4-5
-3. **Research Integration**
+- **Research Integration**
    - Pre-interview research upload
    - Context-aware questions
    - Project/session linking
 
-4. **Report Generation**
+- **Report Generation**
    - Post-interview summary
    - Key insights extraction
    - PDF export
 
 #### Month 6
-5. **Polish & Testing**
+- **Polish & Testing**
    - Improved UI/UX
    - Comprehensive error handling
    - Performance optimization
@@ -221,8 +225,8 @@ User Experience:
 ### 3.2 Technical Simplifications
 
 **Focus Area: Python Backend (High ROI, Low Risk)**
-- Remove LangGraph orchestration → Direct function calls
-- Immutable state management → Simple mutable classes
+- Simplify LangGraph orchestration → E.g. use more direct function calls
+- Over-complex state management → Simplified state handling (i.e. don't use Pydantic's frozen=True so much)
 - 12 specialized agents → 4-6 agents
 - Complex retry logic → Simple error handling
 - **Potential: 30,000 lines → 8,000 lines (75% reduction)**
@@ -231,10 +235,10 @@ User Experience:
 - Current 500 lines are stable and working
 - Only fix bugs found in beta testing
 - Add proper logging (critical fix)
-- Avoid architecture refactoring
-- **The Arc<Mutex> pattern works - don't touch it**
+- Avoid major architecture refactoring until post-beta launch
+- **The Arc<Mutex> pattern is not idiomatic Rust but works - don't touch it except for critical fixes**
 
-**Simplify Architecture**
+**Simplify Backend Architecture**
 ```python
 # From 16 nodes to 4 functions
 async def interview_turn(audio_chunk: bytes) -> QuestionSuggestion:
@@ -295,7 +299,7 @@ Timeline: 6 months to MVP
 
 **Month 6: Launch Preparation**
 - Week 1: UI/UX polish
-- Week 2: Production logging implementation
+- Week 2: Production logging implementation & instrumentation (basic observability)
 - Week 3: Beta testing program
 - Week 4: Bug fixes & launch
 
